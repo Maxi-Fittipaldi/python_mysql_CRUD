@@ -1,44 +1,5 @@
-#funciones de consola
-import os
-#time
-import time
-#conexión
-from Connection import Connection
-#colorama
-import colorama
-from colorama import Fore
+from toFrontEnd import *
 
-colorama.init(autoreset=True)
-#llamada a la clase
-db = Connection()
-#funciones locales
-def help():
-    for i in options:
-        print(Fore.GREEN + f"- {i}")
-        print(Fore.YELLOW + "_______________")
-
-def clear():
-    os.system("cls") #windows
-    os.system("clear") #linux
-
-def salir():
-    print(Fore.RED + "Has salido del programa")
-    time.sleep(1)
-    clear()
-    time.sleep(1)
-    quit() #función reservada de de python
-
-
-#índice
-options = { 
-    "create": db.create,
-    "read": db.read,
-    "update": db.update,
-    "delete": db.delete,
-    "search": db.search,
-    "help": help,
-    "quit": salir
-}
 print(Fore.LIGHTCYAN_EX + """
  ██████╗██████╗ ██╗   ██╗██████╗ 
 ██╔════╝██╔══██╗██║   ██║██╔══██╗
