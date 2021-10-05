@@ -11,7 +11,7 @@ print(Fore.LIGHTCYAN_EX + """
 
 def main():
     db.__init__()
-    print(Fore.MAGENTA + "Especifique la acción que quiere ejecutar ('help' para ver funciones): ")
+    print(Fore.MAGENTA + "write the action you want to execute ('help' to see all the functions): ")
     action = input(">> ")
     match = 0
     for i in options:
@@ -21,7 +21,7 @@ def main():
             options.get(action)()
     if match == 0:
         clear()
-        print(Fore.RED + "no se ha encontrado la función")
+        print(Fore.RED + "the function you are typing does not exist")
     main() #en loop
 
 main()

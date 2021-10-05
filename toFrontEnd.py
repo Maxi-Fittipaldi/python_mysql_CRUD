@@ -27,7 +27,7 @@ def read():
         print(Fore.YELLOW + str(x))
 
 def update():
-    m_id = int(input("inserte el id del producto que quiere modificar: "))
+    m_id = int(input("write the product id you want to modify: "))
     mName = input("name: ")
     mQ_in_stock = int(input("quantity_in_stock: "))
     mUnit_price =  float(input("unit price: "))
@@ -48,6 +48,27 @@ def search():
     result = db.read(f"SELECT * FROM products WHERE name LIKE '%{userSearch}%'")
     for x in result:
         print(Fore.YELLOW + str(x))
+
+def custom(): #falta pulido y organización
+    print(Fore.LIGHTMAGENTA_EX + "Manipulate or read?: ")
+    mode = input(">>")
+    if mode == "manipulate": #problema en este área
+        print(Fore.LIGHTGREEN_EX + "modo manipulate")
+        query = input(">>")
+        db.manipulate(query)
+    elif mode == "read":
+        print(Fore.LIGHTGREEN_EX + "modo read")
+        query = input(">>")
+        result = db.read(query)
+        for x in result:
+            print(Fore.LIGHTYELLOW_EX + str(x))
+    elif mode == "quit":
+        quit_program()
+    else:  
+        print(Fore.RED + "La opción no es válida")
+        custom()
+        
+
 #END extra
 #END CRUD
 
@@ -62,7 +83,7 @@ def clear():
     os.system("cls") #windows
     os.system("clear") #linux
 
-def salir():
+def quit_program():
     print(Fore.RED + "Has salido del programa")
     time.sleep(1)
     clear()
@@ -79,5 +100,6 @@ options = {
     "delete": delete,
     "search": search,
     "help": help,
-    "quit": salir
+    "quit": quit_program,
+    "custom": custom
 }
