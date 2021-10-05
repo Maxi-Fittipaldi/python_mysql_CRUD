@@ -1,3 +1,4 @@
+from os import error
 import pymysql.cursors
 from colorama import Fore 
 class Connection():
@@ -8,7 +9,6 @@ class Connection():
                     database='sql_testing',
                     charset='utf8',
                     cursorclass=pymysql.cursors.DictCursor)
-        self.error = "Algo ocurrió, corrobora que hayas puesto bien los valores"
     
     def read(self,query):
         with self.cnn:
@@ -17,11 +17,8 @@ class Connection():
                     return cursor.fetchall()
                     
     def manipulate(self,query, params = ()): #insert, update, delete
-        try:
-            with self.cnn:
-                    with self.cnn.cursor() as cursor:
-                        result = cursor.execute(query,params)
-                        self.cnn.commit()
-        except:
-            return self.error
+        with self.cnn:
+                with self.cnn.cursor() as cursor:
+                    result = cursor.execute(query,params)
+                    self.cnn.commit()
                     

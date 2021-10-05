@@ -38,26 +38,28 @@ def update():
     WHERE product_id = %s""",(mName, mQ_in_stock, mUnit_price,m_id))
 
 def delete():
-    d_id = int(input("inserte el id del producto que quiere eliminar: "))
+    d_id = int(input("write the product id you want to delete: "))
     db.manipulate("DELETE FROM products WHERE product_id = %s",(d_id))
 # END basic
 
 #START extra
 def search():
-    userSearch = input("Buscar: ")
+    userSearch = input("Search: ")
     result = db.read(f"SELECT * FROM products WHERE name LIKE '%{userSearch}%'")
     for x in result:
         print(Fore.YELLOW + str(x))
 
-def custom(): #falta pulido y organización
-    print(Fore.LIGHTMAGENTA_EX + "Manipulate or read?: ")
+def custom():
+    print(Fore.LIGHTMAGENTA_EX + "manipulate or read?: ")
     mode = input(">>")
-    if mode == "manipulate": #problema en este área
-        print(Fore.LIGHTGREEN_EX + "modo manipulate")
+    
+    if mode == "manipulate":
+        print(Fore.LIGHTGREEN_EX + "manipulate mode")
         query = input(">>")
+        print(query)
         db.manipulate(query)
     elif mode == "read":
-        print(Fore.LIGHTGREEN_EX + "modo read")
+        print(Fore.LIGHTGREEN_EX + "read mode")
         query = input(">>")
         result = db.read(query)
         for x in result:
@@ -84,7 +86,7 @@ def clear():
     os.system("clear") #linux
 
 def quit_program():
-    print(Fore.RED + "Has salido del programa")
+    print(Fore.RED + "Program closed")
     time.sleep(1)
     clear()
     time.sleep(1)
