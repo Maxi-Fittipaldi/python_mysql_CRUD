@@ -22,3 +22,4 @@ class Connection():
                     result = cursor.execute(query,params)
                     self.cnn.commit()
                     
+db = Connection()
