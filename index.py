@@ -1,14 +1,14 @@
 #tree
 from Tree import options
 from crud import crud,adv,custom
-from console import *
+from console import console
 #index
 options.addData({ 
     "main": {
-        "function":main,
+        "function":console.main,
         "content": {
-            "help": {"function": help},
-            "quit": {"function":quit_program},
+            "help": {"function": console.help},
+            "quit": {"function":console.quit_program},
             "create": {"function":crud.create},
             "read": {"function":crud.read},
             "update": {"function":crud.update},

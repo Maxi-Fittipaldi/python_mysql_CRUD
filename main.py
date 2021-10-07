@@ -1,5 +1,5 @@
 from index import *
-
+from colorama import Fore
 print(Fore.LIGHTCYAN_EX + """
  ██████╗██████╗ ██╗   ██╗██████╗ 
 ██╔════╝██╔══██╗██║   ██║██╔══██╗
@@ -9,4 +9,4 @@ print(Fore.LIGHTCYAN_EX + """
  ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ 
 """)
 
-main()
+console.main()

@@ -4,36 +4,38 @@ from Connection import db
 from index import options
 import time
 
-# START sys
-def main():
-    db.__init__()
-    print(Fore.MAGENTA + "write the action you want to execute ('help' to see all the functions): ")
-    action = input(">> ")
-    match = 0
-    for i in options.navigate(["main","content"]):
-        if action == i:
-            match += 1
-            clear()
-            options.navigate(["main","content",action,"function"])()
-    if match == 0:
-        clear()
-        print(Fore.RED + "the function you are typing does not exist")
-    main() #en loop
+# START console
+class Console():
 
-def help():
-    for i in options.navigate(["main","content"]):
-        print(Fore.GREEN + f"- {i}")
-        print(Fore.YELLOW + "_______________")
+    def main(self):
+        db.__init__()
+        print(Fore.MAGENTA + "write the action you want to execute ('help' to see all the functions): ")
+        action = input(">> ")
+        match = 0
+        for i in options.navigate(["main","content"]):
+            if action == i:
+                match += 1
+                self.clear()
+                options.navigate(["main","content",action,"function"])()
+        if match == 0:
+            self.clear()
+            print(Fore.RED + "the function you are typing does not exist")
+        self.main() #en loop
 
-def clear():
-    os.system("cls") #windows
-    os.system("clear") #linux
+    def help(self):
+        for i in options.navigate(["main","content"]):
+            print(Fore.GREEN + f"- {i}")
+            print(Fore.YELLOW + "_______________")
 
-def quit_program():
-    print(Fore.RED + "Program closed")
-    time.sleep(1)
-    clear()
-    time.sleep(1)
-    quit() #python function
+    def clear(self):
+        os.system("cls") #windows
+        os.system("clear") #linux
 
-# END sys
+    def quit_program(self):
+        print(Fore.RED + "Program closed")
+        time.sleep(1)
+        self.clear()
+        time.sleep(1)
+        quit() #python function
+# END console
+console = Console()
