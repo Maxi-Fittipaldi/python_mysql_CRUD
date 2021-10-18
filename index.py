@@ -17,6 +17,7 @@ options.addData({
             "custom": {
                 "function":adv.custom,
                 "content": {
+                    "go_back": {"function": custom.go_back},
                     "read": {"function":custom.read},
                     "manipulate": {"function":custom.manipulate}
                 }

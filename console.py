@@ -28,9 +28,12 @@ class Console():
             print(Fore.YELLOW + "_______________")
 
     def clear(self):
-        os.system("cls") #windows
-        os.system("clear") #linux
-
+        # for windows os
+        if os.name == 'nt': 
+            _ = os.system('cls') 
+        # for mac and linux os(The name is posix)
+        else: 
+            _ = os.system('clear')
     def quit_program(self):
         print(Fore.RED + "Program closed")
         time.sleep(1)
