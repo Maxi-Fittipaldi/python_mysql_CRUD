@@ -27,12 +27,11 @@ class CRUD():
             unit_price = input("unit price: ")
             isValid = Crud_control.create(p_id, name, q_in_stock, unit_price)
             if isValid == True:
-                db.manipulate("""INSERT INTO products 
-                VALUES(%s,%s,%s,%s)""",(p_id, name, q_in_stock, unit_price))
+                db.easyproc("pr_create",(p_id,name,q_in_stock,unit_price))
 
 
     def read(self):
-        result = db.read("SELECT * FROM products")
+        result = db.read("CALL pr_read()")
         for x in result:
             print(Fore.YELLOW + str(x))
 
@@ -45,17 +44,12 @@ class CRUD():
 
             isValid = Crud_control.update(m_id, mName, mQ_in_stock, mUnit_price)
             if isValid == True:
-                db.manipulate("""UPDATE products 
-                SET name = %s, 
-                    quantity_in_stock = %s, 
-                    unit_price = %s 
-                WHERE product_id = %s""",(mName, mQ_in_stock, mUnit_price,m_id))
+                db.easyproc(f"pr_update",(m_id,mName,mQ_in_stock,mUnit_price))
     def delete(self):
-            d_id = input("write the product id you want to delete: ") 
-            isValid = Crud_control.delete(d_id)
-            if isValid:
-                db.manipulate("DELETE FROM products WHERE product_id = %s",(d_id))
-            
+        d_id = input("write the product id you want to delete: ")
+        isValid = Crud_control.delete(d_id)
+        if isValid == True:
+            db.easyproc("pr_delete",[d_id])
 # END basic
 
 #START advanced

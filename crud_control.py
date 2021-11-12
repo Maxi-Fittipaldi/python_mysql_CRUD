@@ -54,7 +54,7 @@ class Crud_control(object):
         except InvalidData:
             print(Fore.RED + "Transaction denied, invalid data")
         except UsedId:
-            print(Fore.RED + "Transaction denied, the id you are typing does not exits")
+            print(Fore.RED + "Transaction denied, the id you are typing does not exist")
         except: 
             print(Fore.RED + "Transaction denied, invalid data")
     def delete(id):
@@ -69,6 +69,6 @@ class Crud_control(object):
             else:
                 raise UsedId
         except UsedId:
-            print(Fore.RED + "Transaction denied, the register does not exists")
+            print(Fore.RED + "Transaction denied, the register does not exist")
         except:
             print(Fore.RED + "Transaction denied, invalid data")

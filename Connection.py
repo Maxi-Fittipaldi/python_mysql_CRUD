@@ -5,7 +5,7 @@ class Connection():
     def __init__(self):
         self.cnn = pymysql.Connect(host='localhost',
                     user='root',
-                    password='M@c4ord0fl4sh3r1x',
+                    password='',
                     database='sql_testing',
                     charset='utf8',
                     cursorclass=pymysql.cursors.DictCursor)
@@ -21,5 +21,10 @@ class Connection():
                 with self.cnn.cursor() as cursor:
                     result = cursor.execute(query,params)
                     self.cnn.commit()
+    def easyproc(self, proc, params = ()): #procedures with params
+        with self.cnn:
+            with self.cnn.cursor() as cursor:
+                result = cursor.callproc(proc,params)
+                self.cnn.commit()
                     
 db = Connection()
